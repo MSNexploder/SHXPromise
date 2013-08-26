@@ -40,7 +40,7 @@ Make sure the "Copy items into destination group's folder (if needed)" checkbox 
 ## Basic Usage
 
 ```objective-c
-SHXPromise *promise = [[]SHXPromise alloc] init];
+SHXPromise *promise = [[SHXPromise alloc] init];
 
 [promise onFulfilled:^id(id value) {
     // success
@@ -115,7 +115,7 @@ This allows you to flatten out nested callbacks, and is the main feature of prom
 Errors also propagate. You can use this to emulate `try/catch` logic in synchronous code. Simply chain as many resolve callbacks as a you want, and add a failure handler at the end to catch errors.
 
 ```objective-c
-[[[[self getJSON:@"posts/1.json"] onFulfilled:^id(id post) {
+[[[self getJSON:@"posts/1.json"] onFulfilled:^id(id post) {
     return [self getJSON:[post objectForKey:@"commentURL"]];
 }] onFulfilled:^id(id comments) {
     // proceed with access to posts and comments
@@ -139,7 +139,7 @@ for (NSString *url in postURLs) {
 
 [[SHXPromise all:promises] onFulfilled:^id(id posts) {
     // posts contains an array of results for the given promises
-}]
+}];
 ```
 
 ## Contact

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:SHXPromise"
+      name = "SHXPromise">
+      <FileRef
+         location = "group:SHXPromise.h">
+      </FileRef>
+      <FileRef
+         location = "group:SHXPromise.m">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:Tests/SHXPromise Tests.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Tests/Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>

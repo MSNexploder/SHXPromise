@@ -1,0 +1,14 @@
+PODS:
+  - SHXPromise (0.1.0)
+
+DEPENDENCIES:
+  - SHXPromise (from `../`)
+
+EXTERNAL SOURCES:
+  SHXPromise:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SHXPromise: dc95a6b0f2dd60dfcbbf4eaeb7772313ac8fa0ab
+
+COCOAPODS: 0.23.0

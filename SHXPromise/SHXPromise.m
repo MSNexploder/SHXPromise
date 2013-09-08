@@ -150,15 +150,15 @@ static inline NSString *stringFromPromiseState(SHXPromiseState state) {
 }
 
 - (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled rejected:(RejectionBlock)onRejected {
-    return [self onFulfilled:onFulfilled rejected:onRejected queue:dispatch_get_main_queue()];
+    return [self onFulfilled:onFulfilled rejected:onRejected queue:dispatch_get_current_queue()];
 }
 
 - (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled {
-    return [self onFulfilled:onFulfilled queue:dispatch_get_main_queue()];
+    return [self onFulfilled:onFulfilled queue:dispatch_get_current_queue()];
 }
 
 - (SHXPromise *)onRejected:(RejectionBlock)onRejected {
-    return [self onRejected:onRejected queue:dispatch_get_main_queue()];
+    return [self onRejected:onRejected queue:dispatch_get_current_queue()];
 }
 
 - (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled rejected:(RejectionBlock)onRejected queue:(dispatch_queue_t)queue {

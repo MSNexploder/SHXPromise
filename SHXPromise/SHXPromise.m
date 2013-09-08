@@ -219,6 +219,10 @@ static inline NSString *stringFromPromiseState(SHXPromiseState state) {
     }
 }
 
+- (void)resolve:(id)value {
+    [self fulfill:value];
+}
+
 - (void)reject:(NSError *)reason {
     @synchronized(self) {
         if ([self state] != SHXPromiseStatePending) {

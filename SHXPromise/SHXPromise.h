@@ -152,6 +152,7 @@ typedef id(^RejectionBlock)(NSError *reason);
  * @param value The successful value that should become the promise's result.
  */
 - (void)fulfill:(id)value;
+- (void)resolve:(id)value;
 
 /**
  * Rejectes the promise with the passed reason.

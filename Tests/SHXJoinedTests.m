@@ -104,4 +104,86 @@
     POLL(done);
 }
 
+- (void)testDictionaryJoinedAllFulfilled {
+    NSDictionary *sentinel1 = @{ @"sentinel": @"sentinel" };
+    NSDictionary *sentinel2 = @{ @"sentinel2": @"sentinel2" };
+    NSDictionary *sentinel3 = @{ @"sentinel3": @"sentinel3" };
+    __block BOOL done = NO;
+    
+    SHXPromise *promise1 = [[SHXPromise alloc] init];
+    SHXPromise *promise2 = [[SHXPromise alloc] init];
+    SHXPromise *promise3 = [[SHXPromise alloc] init];
+    NSDictionary *promises = @{@"promise1": promise1, @"promise2": promise2, @"promise3": promise3};
+    
+    [[SHXPromise dictionary:promises] onFulfilled:^id(id value) {
+        NSDictionary *expected = @{@"promise1": sentinel1, @"promise2": sentinel2, @"promise3": sentinel3};
+        STAssertEqualObjects(value, expected, @"must be equal");
+        done = YES;
+        return value;
+    } rejected:^id(NSError *reason) {
+        STFail(@"must not be called");
+        return reason;
+    }];
+    
+    [promise1 fulfill:sentinel1];
+    [promise2 fulfill:sentinel2];
+    [promise3 fulfill:sentinel3];
+    
+    POLL(done);
+}
+
+- (void)testDictionaryJoinedOneRejected {
+    NSDictionary *sentinel1 = @{ @"sentinel": @"sentinel" };
+    NSError *sentinel2 = [NSError errorWithDomain:@"SHXTest" code:1 userInfo:@{}];
+    NSDictionary *sentinel3 = @{ @"sentinel3": @"sentinel3" };
+    __block BOOL done = NO;
+    
+    SHXPromise *promise1 = [[SHXPromise alloc] init];
+    SHXPromise *promise2 = [[SHXPromise alloc] init];
+    SHXPromise *promise3 = [[SHXPromise alloc] init];
+    NSDictionary *promises = @{@"promise1": promise1, @"promise2": promise2, @"promise3": promise3};
+    
+    [[SHXPromise dictionary:promises] onFulfilled:^id(id value) {
+        STFail(@"must not be called");
+        return value;
+    } rejected:^id(NSError *reason) {
+        STAssertEqualObjects(reason, sentinel2, @"must be equal");
+        done = YES;
+        return reason;
+    }];
+    
+    [promise1 fulfill:sentinel1];
+    [promise2 reject:sentinel2];
+    [promise3 fulfill:sentinel3];
+    
+    POLL(done);
+}
+
+- (void)testDictionaryJoinedMultipleRejected {
+    NSDictionary *sentinel1 = @{ @"sentinel": @"sentinel" };
+    NSError *sentinel2 = [NSError errorWithDomain:@"SHXTest" code:1 userInfo:@{}];
+    NSError *sentinel3 = [NSError errorWithDomain:@"SHXTest" code:2 userInfo:@{}];
+    __block BOOL done = NO;
+    
+    SHXPromise *promise1 = [[SHXPromise alloc] init];
+    SHXPromise *promise2 = [[SHXPromise alloc] init];
+    SHXPromise *promise3 = [[SHXPromise alloc] init];
+    NSDictionary *promises = @{@"promise1": promise1, @"promise2": promise2, @"promise3": promise3};
+    
+    [[SHXPromise dictionary:promises] onFulfilled:^id(id value) {
+        STFail(@"must not be called");
+        return value;
+    } rejected:^id(NSError *reason) {
+        STAssertEqualObjects(reason, sentinel2, @"must be equal");
+        done = YES;
+        return reason;
+    }];
+    
+    [promise1 fulfill:sentinel1];
+    [promise2 reject:sentinel2];
+    [promise3 reject:sentinel3];
+    
+    POLL(done);
+}
+
 @end

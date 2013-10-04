@@ -149,6 +149,48 @@ static inline NSString *stringFromPromiseState(SHXPromiseState state) {
     return finalPromise;
 }
 
++ (SHXPromise *)dictionary:(NSDictionary *)promises {
+    SHXPromise *finalPromise = [[SHXPromise alloc] init];
+    
+    NSUInteger count = [promises count];
+    __block NSUInteger resolvedCount = 0;
+    __block NSMutableDictionary *resultValue = [NSMutableDictionary dictionaryWithCapacity:count];
+    
+    NSUInteger counter = 0;
+    for (id<NSCopying>key in promises) {
+        SHXPromise *promise = [promises objectForKey:key];
+        [promise onFulfilled:^id(id value) {
+            @synchronized(finalPromise) {
+                if ([finalPromise isFulfilled] || [finalPromise isRejected]) {
+                    return value;
+                }
+                
+                resolvedCount += 1;
+                [resultValue setObject:value forKey:key];
+                
+                if (resolvedCount == count) {
+                    [finalPromise fulfill:resultValue];
+                }
+                
+                return value;
+            }
+        } rejected:^id(NSError *reason) {
+            @synchronized(finalPromise) {
+                if ([finalPromise isFulfilled] || [finalPromise isRejected]) {
+                    return reason;
+                }
+                
+                [finalPromise reject:reason];
+                return reason;
+            }
+        }];
+        
+        counter += 1;
+    }
+    
+    return finalPromise;
+}
+
 + (NSArray *)additionalPropertyKeys {
     return @[];
 }

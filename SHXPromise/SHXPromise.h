@@ -75,6 +75,15 @@ typedef id(^RejectionBlock)(NSError *reason);
 + (SHXPromise *)all:(NSArray *)promises;
 
 /**
+ * Return a new promise that will be fulfilled when all of the promises in the dictionary have been fulfilled;
+ * or rejected immediately if any promise in the dictionary is rejected.
+ *
+ * @param promises Dictionary of input promises.
+ * @return A new promise that will be fulfilled when all of the promises in the dictionary have been fulfilled.
+ */
++ (SHXPromise *)dictionary:(NSDictionary *)promises;
+
+/**
  * Overwrite on subclasses to automatically copy additional properties to promises created on callback registration.
  * @return Array of property keys which should be automatically copied.
  */

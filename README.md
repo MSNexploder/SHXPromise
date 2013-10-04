@@ -142,6 +142,25 @@ for (NSString *url in postURLs) {
 }];
 ```
 
+## Dictionary of promises
+
+Sometimes you might want to work with many promises at once.
+If you pass an dictionary of promises to the `dictionary:` method it will return a new promise that will be fulfilled when all of the promises in the dictionary have been fulfilled; or rejected immediately if any promise in the dictionary is rejected.
+
+The key difference to the `all:` method is that both the fulfillment value and the argument to the `dictionary:` function are object literals. This allows you to simply reference the results directly off the returned object without having to remember the initial order like you would with `all:`.
+
+```objective-c
+NSDictionary *promises = @{
+    @"posts": [self getJSON:@"posts.json"],
+    @"users": [self getJSON:@"users.json"],
+};
+
+[[SHXPromise dictionary:promises] onFulfilled:^id(id results) {
+    NSLog(@"%@", [results objectForKey:@"posts"]); // print the users.json results
+    NSLog(@"%@", [results objectForKey:@"users"]); // print the posts.json results
+}];
+```
+
 ## Contact
 
 Stefan Huber

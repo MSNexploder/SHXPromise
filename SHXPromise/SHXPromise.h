@@ -75,6 +75,12 @@ typedef id(^RejectionBlock)(NSError *reason);
 + (SHXPromise *)all:(NSArray *)promises;
 
 /**
+ * Overwrite on subclasses to automatically copy additional properties to promises created on callback registration.
+ * @return Array of property keys which should be automatically copied.
+ */
++ (NSArray *)additionalPropertyKeys;
+
+/**
  * Registers both, an fulfillment and rejection block.
  *
  * @note Can be called multiple times. Registered actions will be resolved in order.
@@ -85,7 +91,7 @@ typedef id(^RejectionBlock)(NSError *reason);
  * The returned value from the block will be used to resolve the returned promise.
  * @return A new promise.
  */
-- (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled rejected:(RejectionBlock)onRejected;
+- (instancetype)onFulfilled:(FulfillmentBlock)onFulfilled rejected:(RejectionBlock)onRejected;
 
 /**
  * Registers an fulfillment block.
@@ -96,7 +102,7 @@ typedef id(^RejectionBlock)(NSError *reason);
  * The returned value from the block will be used to resolve returned promise.
  * @return A new promise.
  */
-- (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled;
+- (instancetype)onFulfilled:(FulfillmentBlock)onFulfilled;
 
 /**
  * Registers an rejection block.
@@ -107,7 +113,7 @@ typedef id(^RejectionBlock)(NSError *reason);
  * The returned value from the block will be used to resolve the returned promise.
  * @return A new promise.
  */
-- (SHXPromise *)onRejected:(RejectionBlock)onRejected;
+- (instancetype)onRejected:(RejectionBlock)onRejected;
 
 /**
  * Registers both, an fulfillment and rejection block.
@@ -120,7 +126,7 @@ typedef id(^RejectionBlock)(NSError *reason);
  * @param queue A queue on which the onFulfilled / on Rejected block will be called.
  * @return A new promise.
  */
-- (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled rejected:(RejectionBlock)onRejected queue:(dispatch_queue_t)queue;
+- (instancetype)onFulfilled:(FulfillmentBlock)onFulfilled rejected:(RejectionBlock)onRejected queue:(dispatch_queue_t)queue;
 
 /**
  * Registers an fulfillment block.
@@ -131,7 +137,7 @@ typedef id(^RejectionBlock)(NSError *reason);
  * @param queue A queue on which the onFulfilled / on Rejected block will be called.
  * @return A new promise.
  */
-- (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled queue:(dispatch_queue_t)queue;
+- (instancetype)onFulfilled:(FulfillmentBlock)onFulfilled queue:(dispatch_queue_t)queue;
 
 /**
  * Registers an rejection block.
@@ -142,7 +148,7 @@ typedef id(^RejectionBlock)(NSError *reason);
  * @param queue A queue on which the onFulfilled / on Rejected block will be called.
  * @return A new promise.
  */
-- (SHXPromise *)onRejected:(RejectionBlock)onRejected queue:(dispatch_queue_t)queue;
+- (instancetype)onRejected:(RejectionBlock)onRejected queue:(dispatch_queue_t)queue;
 
 /**
  * Fulfill the promise with the passed result.

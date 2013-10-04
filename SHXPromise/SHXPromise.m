@@ -149,23 +149,31 @@ static inline NSString *stringFromPromiseState(SHXPromiseState state) {
     return finalPromise;
 }
 
-- (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled rejected:(RejectionBlock)onRejected {
++ (NSArray *)additionalPropertyKeys {
+    return @[];
+}
+
+- (instancetype)onFulfilled:(FulfillmentBlock)onFulfilled rejected:(RejectionBlock)onRejected {
     return [self onFulfilled:onFulfilled rejected:onRejected queue:dispatch_get_current_queue()];
 }
 
-- (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled {
+- (instancetype)onFulfilled:(FulfillmentBlock)onFulfilled {
     return [self onFulfilled:onFulfilled queue:dispatch_get_current_queue()];
 }
 
-- (SHXPromise *)onRejected:(RejectionBlock)onRejected {
+- (instancetype)onRejected:(RejectionBlock)onRejected {
     return [self onRejected:onRejected queue:dispatch_get_current_queue()];
 }
 
-- (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled rejected:(RejectionBlock)onRejected queue:(dispatch_queue_t)queue {
+- (instancetype)onFulfilled:(FulfillmentBlock)onFulfilled rejected:(RejectionBlock)onRejected queue:(dispatch_queue_t)queue {
     onFulfilled = [onFulfilled copy];
     onRejected = [onRejected copy];
     
-    SHXPromise *promise = [[SHXPromise alloc] init];
+    SHXPromise *promise = [[[self class] alloc] init];
+    for (NSString *key in [[self class] additionalPropertyKeys]) {
+        id value = [self valueForKey:key];
+        [promise setValue:value forKey:key];
+    }
     
     [[self onFulfilledCallbacks] addObject:[[SHXPromiseCallback alloc] initWithPromise:promise callback:onFulfilled queue:queue]];
     [[self onRejectedCallbacks] addObject:[[SHXPromiseCallback alloc] initWithPromise:promise callback:onRejected queue:queue]];
@@ -180,11 +188,11 @@ static inline NSString *stringFromPromiseState(SHXPromiseState state) {
     return promise;
 }
 
-- (SHXPromise *)onFulfilled:(FulfillmentBlock)onFulfilled queue:(dispatch_queue_t)queue {
+- (instancetype)onFulfilled:(FulfillmentBlock)onFulfilled queue:(dispatch_queue_t)queue {
     return [self onFulfilled:onFulfilled rejected:nil queue:queue];
 }
 
-- (SHXPromise *)onRejected:(RejectionBlock)onRejected queue:(dispatch_queue_t)queue {
+- (instancetype)onRejected:(RejectionBlock)onRejected queue:(dispatch_queue_t)queue {
     return [self onFulfilled:nil rejected:onRejected queue:queue];
 }
 

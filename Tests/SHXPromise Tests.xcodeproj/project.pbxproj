@@ -19,6 +19,8 @@
 		F82224B91781015E007E4A44 /* SHXAsynchronousTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F82224B71781015E007E4A44 /* SHXAsynchronousTests.m */; };
 		F82224BC178186E4007E4A44 /* SHXTestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F82224BB178186E4007E4A44 /* SHXTestBase.m */; };
 		F82224BD178186E4007E4A44 /* SHXTestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F82224BB178186E4007E4A44 /* SHXTestBase.m */; };
+		F87F2FCF17FEEC97005C1ECA /* SHXSubclassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F87F2FCE17FEEC97005C1ECA /* SHXSubclassTests.m */; };
+		F87F2FD017FEEC97005C1ECA /* SHXSubclassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F87F2FCE17FEEC97005C1ECA /* SHXSubclassTests.m */; };
 		F890ED9517C9089800DCA1BF /* SHXJoinedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F890ED9417C9089800DCA1BF /* SHXJoinedTests.m */; };
 		F890ED9617C9089800DCA1BF /* SHXJoinedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F890ED9417C9089800DCA1BF /* SHXJoinedTests.m */; };
 		F8BBF2D517857C93007D58B5 /* SHXRejectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BBF2D417857C93007D58B5 /* SHXRejectionTests.m */; };
@@ -42,6 +44,8 @@
 		F82224B71781015E007E4A44 /* SHXAsynchronousTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHXAsynchronousTests.m; sourceTree = "<group>"; };
 		F82224BA178186E4007E4A44 /* SHXTestBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHXTestBase.h; sourceTree = "<group>"; };
 		F82224BB178186E4007E4A44 /* SHXTestBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHXTestBase.m; sourceTree = "<group>"; };
+		F87F2FCE17FEEC97005C1ECA /* SHXSubclassTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHXSubclassTests.m; sourceTree = "<group>"; };
+		F87F2FD117FEECB7005C1ECA /* SHXSubclassTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHXSubclassTests.h; sourceTree = "<group>"; };
 		F890ED9317C9089800DCA1BF /* SHXJoinedTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHXJoinedTests.h; sourceTree = "<group>"; };
 		F890ED9417C9089800DCA1BF /* SHXJoinedTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHXJoinedTests.m; sourceTree = "<group>"; };
 		F8BBF2D317857C93007D58B5 /* SHXRejectionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHXRejectionTests.h; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 				F8C6D96B17C7BA62007CBAB6 /* SHXChainingTests.m */,
 				F890ED9317C9089800DCA1BF /* SHXJoinedTests.h */,
 				F890ED9417C9089800DCA1BF /* SHXJoinedTests.m */,
+				F87F2FD117FEECB7005C1ECA /* SHXSubclassTests.h */,
+				F87F2FCE17FEEC97005C1ECA /* SHXSubclassTests.m */,
 				F82224BA178186E4007E4A44 /* SHXTestBase.h */,
 				F82224BB178186E4007E4A44 /* SHXTestBase.m */,
 			);
@@ -301,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F87F2FCF17FEEC97005C1ECA /* SHXSubclassTests.m in Sources */,
 				F82224B41780FCED007E4A44 /* SHXFulfillmentTests.m in Sources */,
 				F8C6D96C17C7BA62007CBAB6 /* SHXChainingTests.m in Sources */,
 				F890ED9517C9089800DCA1BF /* SHXJoinedTests.m in Sources */,
@@ -314,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F87F2FD017FEEC97005C1ECA /* SHXSubclassTests.m in Sources */,
 				F82224B51780FCED007E4A44 /* SHXFulfillmentTests.m in Sources */,
 				F8C6D96D17C7BA62007CBAB6 /* SHXChainingTests.m in Sources */,
 				F890ED9617C9089800DCA1BF /* SHXJoinedTests.m in Sources */,

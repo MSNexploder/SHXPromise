@@ -1,5 +1,9 @@
 # SHXPromise CHANGELOG
 
+## 0.3.0
+
+Better subclassing support
+
 ## 0.2.0
 
 Use dispatch_get_current_queue() as default dispatch queue

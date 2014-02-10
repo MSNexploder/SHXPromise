@@ -1,5 +1,5 @@
 PODS:
-  - SHXPromise (0.1.0)
+  - SHXPromise (0.4.0)
 
 DEPENDENCIES:
   - SHXPromise (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SHXPromise: dc95a6b0f2dd60dfcbbf4eaeb7772313ac8fa0ab
+  SHXPromise: d9b14c63659f948502cebf2cdb30142fc2e735eb
 
-COCOAPODS: 0.23.0
+COCOAPODS: 0.29.0

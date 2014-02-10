@@ -1,5 +1,9 @@
 # SHXPromise CHANGELOG
 
+## 0.4.0
+
+* Fixed crash when promises are resolved out of order (mikemliu)
+
 ## 0.3.0
 
 * Better subclassing support

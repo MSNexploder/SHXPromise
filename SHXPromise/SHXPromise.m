@@ -114,6 +114,10 @@ static inline NSString *stringFromPromiseState(SHXPromiseState state) {
     NSUInteger count = [promises count];
     __block NSUInteger resolvedCount = 0;
     __block NSMutableArray *resultValue = [NSMutableArray arrayWithCapacity:count];
+    for (NSUInteger i = 0; i < count; i++) {
+        // initialize array with null - see -testAllJoinedFulfilledOutOfOrder for details
+        [resultValue insertObject:[NSNull null] atIndex:i];
+    }
     
     NSUInteger counter = 0;
     for (SHXPromise *promise in promises) {
@@ -124,7 +128,7 @@ static inline NSString *stringFromPromiseState(SHXPromiseState state) {
                 }
                 
                 resolvedCount += 1;
-                [resultValue insertObject:value atIndex:counter];
+                [resultValue replaceObjectAtIndex:counter withObject:value];
                 
                 if (resolvedCount == count) {
                     [finalPromise fulfill:resultValue];
